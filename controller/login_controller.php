@@ -1,4 +1,9 @@
 <?php
+    session_start();
+
+    if(isset($_SESSION["login"])){
+        header('Location: ../index.php');
+    }
     include('../database/db.php');
 
     if (isset($_POST['login'])){
@@ -10,14 +15,17 @@
         if(mysqli_num_rows($result) === 1){
             $row = mysqli_fetch_assoc($result);
             if(password_verify($password, $row["password"])){
+
+                // set session
+                $_SESSION["login"] = true;
                 header('Location: ../index.php');
                 exit;
             }else{
-                echo "<script>alert('Password salah')</script>";
-                var_dump($row);
+                header('Location: ../pages/login.php?status=wrong');
             }
         }else{
-            echo "<script>alert('Akun tidak ditemukan')</script>";
+            header('Location: ../pages/login.php?status=failed');
+            exit;
             
         }
     }

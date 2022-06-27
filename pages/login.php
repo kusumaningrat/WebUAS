@@ -1,6 +1,5 @@
 <?php
-    include '../controller/login_controller.php';
-?>
+include '../controller/login_controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +24,18 @@
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-5">
                                 <h2 class="text-uppercase text-center mb-5">Login to your account</h2>
+                                <?php if(isset($_GET['status'])): ?>
+                                    <p style="text-align: center;font-weight: bold;font-size: 20px;" class="text-danger">
+                                        <?php
+                                            if($_GET['status'] == 'failed'){
+                                                echo "Akun Tidak ditemukan";
+                                            }
+                                            if($_GET['status'] == 'wrong'){
+                                                echo "Password Salah";
+                                            }
+                                        ?>
+                                    </p>
+                                <?php endif; ?>
                                 <form action="../controller/login_controller.php" method="POST" enctype="multipart/form-data">
 
                                     <div class="form-outline mb-4">

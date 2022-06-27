@@ -1,8 +1,9 @@
 <?php
 session_start();
 
-if($_SESSION['status'] == 'liggedin'){
-    header('location: pages/login.php');
+if(!isset($_SESSION["login"])){
+    header("Location: pages/login.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -86,7 +87,7 @@ if($_SESSION['status'] == 'liggedin'){
                                     <a class="dropdown-item" href="pages/login.php">Login</a>
                                     <a class="dropdown-item" href="pages/register.php">Register</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="pages/login.php">Logout</a>
+                                    <a class="dropdown-item" href="controller/logout_controller.php">Logout</a>
                                 </div>
                             </li>
                         </ul>

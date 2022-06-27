@@ -1,5 +1,11 @@
 <?php
     include '../controller/register_controller.php';
+    session_start();
+
+    if(!isset($_SESSION["login"])){
+        header("Location: pages/login.php");
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +30,16 @@
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-5">
                                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                                <?php if(isset($_GET['status'])): ?>
+                                    <p style="text-align: center;font-weight: bold;font-size: 20px;" class="text-success">
+                                        <?php
+                                            if($_GET['status'] == 'success'){
+                                                echo "User Berhasil di buat <a href='login.php'>Login</a>";
+                                            }
+                                            
+                                        ?>
+                                    </p>
+                                <?php endif; ?>
                                 <form action="../controller/register_controller.php" method="POST" enctype="multipart/form-data">
 
                                     <div class="form-outline mb-4">

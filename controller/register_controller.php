@@ -2,10 +2,10 @@
  require('../database/db.php');
 
  if (isset($_POST['kirim'])) {
-   $nama = $_POST['nama'];
-   $email = $_POST['email'];
-   $password = hash('sha512
-   ', $_POST['password']);
+   $nama = mysqli_escape_string($db, $_POST['nama']);
+   $email = mysqli_escape_string($db, $_POST['email']);
+   $password = mysqli_escape_string($db, $_POST['password']);
+   $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
      //  Check duplicate users
     $get = mysqli_query($db, "SELECT * FROM tb_users WHERE nama='".$nama."'");
@@ -16,20 +16,12 @@
                     document.location='../pages/register.php';
                 </script>";
     }else{
-        $insert = mysqli_query($db, "INSERT INTO tb_users ('id', 'nama', 'email', 'password') VALUES(NULL, '$nama', '$email', '$password')");
+        $insert = mysqli_query($db, "INSERT INTO tb_users VALUES(NULL, '$nama', '$email', '$password_hash')");
 
         if($insert){
-            echo "<script>
-                alert('Data berhasil disimpan');
-                 document.location='index.php';
-                </script>";
-            header('Location: ../pages/login.php');
+            header('Location: ../pages/register.php?status=success');
         }else{
-                    echo "<script>
-                        alert('Data gagal disimpan');
-                        document.location='index.php';
-                    </script>"; 
-            header('Location: ../pages/register.php');
+            header('Location: ../pages/register.php?status=failed');
         }
     }
  }
