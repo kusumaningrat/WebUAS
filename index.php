@@ -18,6 +18,7 @@ if(!isset($_SESSION["login"])){
     <link rel="icon" type="image/x-icon" href="assets/img/youtube.png" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link href="assets/css/styles.css" rel="stylesheet" />
+    <link href="assets/css/index.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/78da7f43ac.js" crossorigin="anonymous"></script>
     <style>
 
@@ -60,7 +61,7 @@ if(!isset($_SESSION["login"])){
         <div class="border-end bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading bg-light">Youtube</div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="#!"><i
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="index.php"><i
                         class="fa-solid fa-house" style="margin-right: 6px;"></i>Home</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="pages/favourites.php"><i
                         class="fa-solid fa-bookmark" style="margin-right: 6px;"></i>Favourites</a>
@@ -76,6 +77,10 @@ if(!isset($_SESSION["login"])){
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation"><span
                             class="navbar-toggler-icon"></span></button>
+                            <form class="example" action="action_page.php" style="margin-left: 350px;">
+                                <input type="text" placeholder="Search.." name="search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                             <li class="nav-item dropdown">
@@ -99,7 +104,6 @@ if(!isset($_SESSION["login"])){
                 <button class="btn" onclick="filterSelection('linux')">Linux</button>
                 <button class="btn" onclick="filterSelection('cisco')">Cisco</button>
                 <button class="btn" onclick="filterSelection('web')">Web</button>
-                <hr>
             </div>
             <div class="container">
                 <div class="row row-cols-4 row-cols-md-auto g-2 mt-2" style="margin-left: 50px;">
@@ -112,11 +116,9 @@ if(!isset($_SESSION["login"])){
                                 <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi DNS Server di Debian 10</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <a href="#" class="btn btn-primary btn-sm" style="background-color: red;">
-                                    Subscribe
-                                </a>
-                                <a href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></a>
+                                <button class="btn" id="subs1" style="background-color: red;color: white;" onclick="Subs(1)">Subscribe</button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
+                                    <i class="far fa-heart" style="color: white;"></i></button>
                             </div>
                         </div>
                     </div>
@@ -129,11 +131,9 @@ if(!isset($_SESSION["login"])){
                                 <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi Web Server di Debian 10</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <a href="#" class="btn btn-primary btn-sm" style="background-color: red;">
-                                    Subscribe
-                                </a>
-                                <a href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></a>
+                                <button class="btn" id="subs2" style="background-color: red;color: white;" onclick="Subs(2)">Subscribe</button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
+                                    <i class="far fa-heart" style="color: white;"></i></button>
                             </div>
                         </div>
                     </div>
@@ -146,11 +146,9 @@ if(!isset($_SESSION["login"])){
                                 <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi FTP Server di Debian 10</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <a href="#" class="btn btn-primary btn-sm" style="background-color: red;">
-                                    Subscribe
-                                </a>
-                                <a href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></a>
+                                <button class="btn" id="subs3" style="background-color: red;color: white;" onclick="Subs(3)">Subscribe</button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
+                                    <i class="far fa-heart" style="color: white;"></i></button>
                             </div>
                         </div>
                     </div>
@@ -163,11 +161,9 @@ if(!isset($_SESSION["login"])){
                                 <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi DNS Server di Cisco </h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <a href="#" class="btn btn-primary btn-sm" style="background-color: red;">
-                                    Subscribe
-                                </a>
-                                <a href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></a>
+                                <button class="btn" id="subs4" style="background-color: red;color: white;" onclick="Subs(4)">Subscribe</button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
+                                    <i class="far fa-heart" style="color: white;"></i></button>
                             </div>
                         </div>
                     </div>
@@ -180,11 +176,9 @@ if(!isset($_SESSION["login"])){
                                 <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi Web Server di Cisco</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <a href="#" class="btn btn-primary btn-sm" style="background-color: red;">
-                                    Subscribe
-                                </a>
-                                <a href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></a>
+                                <button class="btn" id="subs5" style="background-color: red;color: white;" onclick="Subs(5)">Subscribe</button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
+                                    <i class="far fa-heart" style="color: white;"></i></button>
                             </div>
                         </div>
                     </div>
@@ -197,11 +191,9 @@ if(!isset($_SESSION["login"])){
                                 <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi FTP Server di Cisco</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <a href="#" class="btn btn-primary btn-sm" style="background-color: red;">
-                                    Subscribe
-                                </a>
-                                <a href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></a>
+                                <button class="btn" id="subs6" style="background-color: red;color: white;" onclick="Subs(6)">Subscribe</button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
+                                    <i class="far fa-heart" style="color: white;"></i></button>
                             </div>
                         </div>
                     </div>
@@ -214,11 +206,9 @@ if(!isset($_SESSION["login"])){
                                 <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Membuat Tag HTML</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <a href="#" class="btn btn-primary btn-sm" style="background-color: red;">
-                                    Subscribe
-                                </a>
-                                <a href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></a>
+                                <button class="btn" id="subs7" style="background-color: red;color: white;" onclick="Subs(7)">Subscribe</button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
+                                    <i class="far fa-heart" style="color: white;"></i></button>
                             </div>
                         </div>
                     </div>
@@ -231,11 +221,9 @@ if(!isset($_SESSION["login"])){
                                 <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Membuat Flex</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <a href="#" class="btn btn-primary btn-sm" style="background-color: red;">
-                                    Subscribe
-                                </a>
-                                <a href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></a>
+                                <button class="btn" id="subs8" style="background-color: red;color: white;" onclick="Subs(8)">Subscribe</button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
+                                    <i class="far fa-heart" style="color: white;"></i></button>
                             </div>
                         </div>
                     </div>
@@ -245,55 +233,7 @@ if(!isset($_SESSION["login"])){
         <!-- Bootstrap core JS-->
         <!-- Core theme JS-->
         <script src="assets/js/scripts.js"></script>
-        <script>
-            filterSelection("all")
-            function filterSelection(c) {
-                var x, i;
-                x = document.getElementsByClassName("filtering");
-                if (c == "all") c = "";
-                // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
-                for (i = 0; i < x.length; i++) {
-                    w3RemoveClass(x[i], "show");
-                    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-                }
-            }
-
-            // Show filtered elements
-            function w3AddClass(element, name) {
-                var i, arr1, arr2;
-                arr1 = element.className.split(" ");
-                arr2 = name.split(" ");
-                for (i = 0; i < arr2.length; i++) {
-                    if (arr1.indexOf(arr2[i]) == -1) {
-                    element.className += " " + arr2[i];
-                    }
-                }
-            }
-
-            // Hide elements that are not selected
-            function w3RemoveClass(element, name) {
-                var i, arr1, arr2;
-                arr1 = element.className.split(" ");
-                arr2 = name.split(" ");
-                for (i = 0; i < arr2.length; i++) {
-                    while (arr1.indexOf(arr2[i]) > -1) {
-                    arr1.splice(arr1.indexOf(arr2[i]), 1);
-                    }
-                }
-                element.className = arr1.join(" ");
-            }
-
-                // Add active class to the current control button (highlight it)
-            var btnContainer = document.getElementById("myBtnContainer");
-            var btns = btnContainer.getElementsByClassName("btn");
-            for (var i = 0; i < btns.length; i++) {
-                btns[i].addEventListener("click", function() {
-                    var current = document.getElementsByClassName("active");
-                    current[0].className = current[0].className.replace(" active", "");
-                    this.className += " active";
-                });
-            }
-        </script>
+        <script src="assets/js/index.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
     </body>
 
