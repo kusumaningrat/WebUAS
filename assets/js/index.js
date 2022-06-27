@@ -49,9 +49,10 @@ for (var i = 0; i < btns.length; i++) {
 function Subs(index){
     for (var i = 1; i < 10; i++) {
         let subs = document.querySelector('#subs' + i)
+        let btn = document.getElementById("subs" + i);
         if(i == index){
-            console.log(subs.style.backgroundColor);
             subs.style.backgroundColor = subs.style.backgroundColor === 'red' ? 'grey':'red';
+            btn.value = btn.value == "Subscribe" ? "Unsubscribe" : "Subscribe";
             subs.style.color = subs.style.color === 'white' ? 'black' : 'white';
         }
     }
