@@ -1,5 +1,5 @@
 <?php
-    include '../controller/register_controller.php';
+    include '../controller/upload_controller.php.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,33 +29,41 @@
                                     <p style="text-align: center;font-weight: bold;font-size: 20px;" class="text-success">
                                         <?php
                                             if($_GET['status'] == 'success'){
-                                                echo "User Berhasil di buat <a href='login.php'>Login</a>";
+                                                echo "Video Berhasil di upload <a href='../index.php'>Home</a>";
+                                            }else{
+                                                echo "Video Gagal di upload <a href='../index.php'>Home</a>";
+
                                             }
                                             
                                         ?>
                                     </p>
                                 <?php endif; ?>
-                                <form action="../controller/register_controller.php" method="POST" enctype="multipart/form-data">
+                                <form action="../controller/upload_controller.php" method="POST" enctype="multipart/form-data">
 
                                     <div class="form-outline mb-4">
                                         <label>Title</label>
-                                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="nama" autocomplete="off" autofocus="true" required/>
+                                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="title" autocomplete="off" autofocus="true" required/>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label>Tags</label>
+                                        <select name="tags" id="tags" class="form-control form-control-lg">
+                                            <option value="">Pilih Tags</option>
+                                            <option value="linux">Linux</option>
+                                            <option value="cisco">Cisco</option>
+                                            <option value="web">Web</option>
+                                        </select>
                                     </div>
 
                                     <div class="form-outline mb-4">
                                         <label>Upload Videos</label>
-                                        <input type="file" class="form-control form-control-lg" name="file" autocomplete="off" autofocus="true" required/>
-                                    </div>
-
-                                    <div class="form-outline mb-4">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control form-control-lg" name="password" autocomplete="off" autofocus="true" required/>
+                                        <input type="file" class="form-control form-control-lg" name="video" autocomplete="off" autofocus="true" required/>
                                     </div>
 
                                     <div class="d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-primary" name="kirim">Register</button>
+                                        <button type="submit" class="btn btn-primary" name="upload">Upload</button>
                                     </div>
-                                    <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="login.php" class="fw-bold text-body"><u>Login here</u></a></p>
+                                    <p class="text-center text-muted mt-5 mb-0">Yotube <a href="../index.php" class="fw-bold text-body"><u>Login here</u></a></p>
                                 </form>
                             </div>
                         </div>

@@ -7,8 +7,10 @@ if(!isset($_SESSION["login"])){
     exit;
 }
 
-$result = mysqli_query($db, "SELECT image FROM tb_users WHERE id = '" . $_SESSION['id']."'");
-$row = mysqli_fetch_assoc($result);
+$result = mysqli_query($db, "SELECT * FROM tb_users WHERE id = '" . $_SESSION['id']."'");
+$user = mysqli_fetch_assoc($result);
+
+
 // die();
 
 ?>
@@ -69,7 +71,22 @@ $row = mysqli_fetch_assoc($result);
             <div class="list-group list-group-flush">
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="index.php"><i
                         class="fa-solid fa-house" style="margin-right: 6px;"></i>Home</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="pages/favourites.php"><i class="fa-solid fa-thumbs-up" style="margin-right: 6px;"></i>Liked Videos</a>
+                <p style="color: grey;text-transform: uppercase;margin-left: 8px;margin-top: 5px;">Subscriptions</p>
+                <p style="margin-left: 8px;margin-top: 5px;""><img src="assets/img/profile.jpeg" width="30px" alt=""> Zulhizmi</p>
+                <p style="margin-left: 8px;margin-top: 5px;""><img src="assets/img/unpas.jpeg" width="30px" alt="" class="rounded-circle"> Web Programming UNPAS</p>
+                <p style="margin-left: 8px;margin-top: 5px;""><img src="assets/img/trans7.jpeg" width="30px" alt="" class="rounded-circle"> TRANS7 OFFICIAL</p>
+                <p style="margin-left: 8px;margin-top: 5px;""><img src="assets/img/laporpak.jpeg" width="30px" alt="" class="rounded-circle"> Lapor Pak</p>
+                <p style="margin-left: 8px;margin-top: 5px;""><img src="assets/img/programmer.jpg" width="30px" alt="" class="rounded-circle"> Programmer Zaman Now</p>
+                <hr>
+                <p class="list-group-item-light p-2"><i
+                        class="fa-solid fa-gear" style="margin-right: 8px;margin-left: 6px;margin-bottom: 2px;"></i>Settings</p>
+                <p class="list-group-item-light p-2"><i
+                        class="fa-solid fa-flag" style="margin-right: 8px;margin-left: 6px;"></i>Report History</p>
+                <p class="list-group-item-light p-2"><i
+                        class="fa-solid fa-circle-question" style="margin-right: 8px;margin-left: 6px;"></i>Help</p>
+                <p class="list-group-item-light p-2"><i
+                        class="fa-solid fa-comments" style="margin-right: 8px;margin-left: 6px;"></i>Feedback</p>
+                
             </div>
         </div>
         <!-- Page content wrapper-->
@@ -98,7 +115,7 @@ $row = mysqli_fetch_assoc($result);
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                             <li class="nav-item dropdown">
-                                <img src="assets/img/profile/<?php echo $row['image'] ?>" alt="Profile" width="40px" height="40px" class="nav-link dropdown-toggle rounded-circle" 
+                                <img src="assets/img/profile/<?php echo $user['image'] ?>" alt="Profile" width="40px" height="40px" class="nav-link dropdown-toggle rounded-circle" 
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
                                 <!-- <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a> -->
@@ -114,134 +131,37 @@ $row = mysqli_fetch_assoc($result);
                 </div>
             </nav>
             <div id="myBtnContainer" style="text-align: center;margin-top: 15px;">
-                <button class="btn active" onclick="filterSelection('all')">Show all</button>
-                <button class="btn" onclick="filterSelection('linux')">Linux</button>
+                <button class="btn active" onclick="filterSelection('all')" name="show_all">Show all</button>
+                <button class="btn" onclick="filterSelection('linux')" name="linux">Linux</button>
                 <button class="btn" onclick="filterSelection('cisco')">Cisco</button>
                 <button class="btn" onclick="filterSelection('web')">Web</button>
+                <hr>
             </div>
             <div class="container">
-                <div class="row row-cols-4 row-cols-md-auto g-2 mt-2" style="margin-left: 50px;">
-                    <div class="filtering linux">
-                        <div class="card" style="width: 20rem;">
-                            <video width="320" height="240" controls >
-                                <source src="assets/video/linux1.mp4" type="video/mp4">
-                            </video>
-                            <div class="card-body">
-                                <img src="assets/img/profile/<?php echo $row['image'] ?>" alt="Profile" width="30px">
-                                <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi DNS Server di Debian 10</h5>
-                                <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <input type="button" class="btn" id="subs1" style="background-color: red;color: white;" onclick="Subs(1)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(1)">
-                                    <i class="far fa-heart" style="color: white;" id="icon1"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filtering linux">
+                <?php
+                    $videos = mysqli_query($db, "SELECT * FROM contents");
+                    $i = 1;
+                    while($row = mysqli_fetch_assoc($videos)){
+                       
+                ?>
+                <div class="col" style="margin-left: 50px;float: left;" id="wrapper<?php echo $i ?>">
+                    <div class="filtering <?php echo $row['tags']?>"> 
                         <div class="card" style="width: 20rem;">
                             <video width="320" height="240" controls>
-                                <source src="assets/video/linux2.mp4" type="video/mp4">
+                                <source src="assets/video/<?php echo $row['location']?>" type="video/mp4">
                             </video>
                             <div class="card-body">
-                                <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
-                                <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi Web Server di Debian 10</h5>
-                                <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <input type="button" class="btn" id="subs2" style="background-color: red;color: white;" onclick="Subs(2)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(2)">
-                                    <i class="far fa-heart" style="color: white;" id="icon2" ></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filtering linux">
-                        <div class="card" style="width: 20rem;">
-                            <video width="320" height="240" controls>
-                                <source src="assets/video/linux3.mp4" type="video/mp4">
-                            </video>
-                            <div class="card-body">
-                                <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
-                                <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi FTP Server di Debian 10</h5>
-                                <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <input type="button" class="btn" id="subs3" style="background-color: red;color: white;" onclick="Subs(3)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(3)">
-                                    <i class="far fa-heart" style="color: white;" id="icon3"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filtering cisco">
-                        <div class="card" style="width: 20rem;">
-                            <video width="320" height="240" controls>
-                                <source src="assets/video/vid1.mp4" type="video/mp4">
-                            </video>
-                            <div class="card-body">
-                                <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
-                                <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi DNS Server di Cisco </h5>
-                                <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <input type="button" class="btn" id="subs4" style="background-color: red;color: white;" onclick="Subs(4)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(4)">
-                                    <i class="far fa-heart" style="color: white;" id="icon4"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filtering cisco">
-                        <div class="card" style="width: 20rem;">
-                            <video width="320" height="240" controls>
-                                <source src="assets/video/vid2.mp4" type="video/mp4">
-                            </video>
-                            <div class="card-body">
-                                <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
-                                <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi Web Server di Cisco</h5>
-                                <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <input type="button" class="btn" id="subs5" style="background-color: red;color: white;" onclick="Subs(5)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(5)">
-                                    <i class="far fa-heart" style="color: white;" id="icon5"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filtering cisco">
-                        <div class="card" style="width: 20rem;">
-                            <video width="320" height="240" controls>
-                                <source src="assets/video/vid3.mp4" type="video/mp4">
-                            </video>
-                            <div class="card-body">
-                                <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
-                                <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi FTP Server di Cisco</h5>
-                                <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <input type="button" class="btn" id="subs6" style="background-color: red;color: white;" onclick="Subs(6)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(6)">
-                                    <i class="far fa-heart" style="color: white;" id="icon6"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filtering web">
-                        <div class="card" style="width: 20rem;">
-                            <video width="320" height="240" controls>
-                                <source src="assets/video/vid4.mp4" type="video/mp4">
-                            </video>
-                            <div class="card-body">
-                                <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
-                                <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Membuat Tag HTML</h5>
-                                <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <input type="button" class="btn" id="subs7" style="background-color: red;color: white;" onclick="Subs(7)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(7)">
-                                    <i class="far fa-heart" style="color: white;" id="icon7"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filtering cisco">
-                        <div class="card" style="width: 20rem;">
-                            <video width="320" height="240" controls>
-                                <source src="assets/video/server1.mp4" type="video/mp4">
-                            </video>
-                            <div class="card-body">
-                                <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
-                                <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Membuat Flex</h5>
-                                <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
-                                <input type="button" class="btn" id="subs8" style="background-color: red;color: white;" onclick="Subs(8)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(8)">
-                                    <i class="far fa-heart" style="color: white;" id="icon8"></i></button>
+                                <img src="assets/img/profile/<?php echo $user['image'] ?>" alt="Profile" width="30px">
+                                <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;"><?php echo $row['title'] ?></h5>
+                                <h6 class="card-user mb-2 mt-2 text-muted"><?php echo $user['nama'] ?></h6>
+                                <input type="button" class="btn" id="subs<?php echo $i ?>"  style="background-color: red;color: white;" onclick="Subs(<?php echo $i ?>)" value="Subscribe"></input>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(<?php echo $i ?>)">
+                                    <i class="far fa-heart" style="color: white;" id="icon<?php echo $i ?>"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <?php  $i++; } ?>
             </div>
         </div>
         <!-- Bootstrap core JS-->
