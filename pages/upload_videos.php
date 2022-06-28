@@ -1,6 +1,6 @@
 <?php
-include '../controller/login_controller.php'; ?>
-
+    include '../controller/register_controller.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +13,7 @@ include '../controller/login_controller.php'; ?>
     <link href="../assets/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/78da7f43ac.js" crossorigin="anonymous"></script>
 
-    <title>Login Account</title>
+    <title>Upload Videos</title>
 </head>
 
 <body>
@@ -24,24 +24,27 @@ include '../controller/login_controller.php'; ?>
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-5">
-                                <h2 class="text-uppercase text-center mb-5">Login to your account</h2>
+                                <h2 class="text-uppercase text-center mb-5">Upload Your Videos</h2>
                                 <?php if(isset($_GET['status'])): ?>
-                                    <p style="text-align: center;font-weight: bold;font-size: 20px;" class="text-danger">
+                                    <p style="text-align: center;font-weight: bold;font-size: 20px;" class="text-success">
                                         <?php
-                                            if($_GET['status'] == 'failed'){
-                                                echo "Akun Tidak ditemukan";
+                                            if($_GET['status'] == 'success'){
+                                                echo "User Berhasil di buat <a href='login.php'>Login</a>";
                                             }
-                                            if($_GET['status'] == 'wrong'){
-                                                echo "Password Salah";
-                                            }
+                                            
                                         ?>
                                     </p>
                                 <?php endif; ?>
-                                <form action="../controller/login_controller.php" method="POST" enctype="multipart/form-data">
+                                <form action="../controller/register_controller.php" method="POST" enctype="multipart/form-data">
 
                                     <div class="form-outline mb-4">
-                                        <label>Your Email</label>
-                                        <input type="email" class="form-control form-control-lg" name="email" autocomplete="off" autofocus="true" required/>
+                                        <label>Title</label>
+                                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="nama" autocomplete="off" autofocus="true" required/>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label>Upload Videos</label>
+                                        <input type="file" class="form-control form-control-lg" name="file" autocomplete="off" autofocus="true" required/>
                                     </div>
 
                                     <div class="form-outline mb-4">
@@ -50,9 +53,9 @@ include '../controller/login_controller.php'; ?>
                                     </div>
 
                                     <div class="d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-primary" name="login">Login</button>
+                                        <button type="submit" class="btn btn-primary" name="kirim">Register</button>
                                     </div>
-                                    <p class="text-center text-muted mt-5 mb-0">Have not an account? <a href="register.php" class="fw-bold text-body"><u>Register here</u></a></p>
+                                    <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="login.php" class="fw-bold text-body"><u>Login here</u></a></p>
                                 </form>
                             </div>
                         </div>

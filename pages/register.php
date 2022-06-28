@@ -1,11 +1,5 @@
 <?php
     include '../controller/register_controller.php';
-    session_start();
-
-    if(!isset($_SESSION["login"])){
-        header("Location: pages/login.php");
-        exit;
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../assets/img/youtube.png" />
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link href="../assets/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/78da7f43ac.js" crossorigin="anonymous"></script>
@@ -55,6 +50,11 @@
                                     <div class="form-outline mb-4">
                                         <label>Password</label>
                                         <input type="password" class="form-control form-control-lg" name="password" autocomplete="off" autofocus="true" required/>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label>Profile Image</label>
+                                        <input type="file" class="form-control form-control-lg" name="gambar" autocomplete="off" autofocus="true" required/>
                                     </div>
 
                                     <div class="d-flex justify-content-center">

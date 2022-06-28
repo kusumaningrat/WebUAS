@@ -1,10 +1,16 @@
 <?php
+include 'database/db.php';
 session_start();
 
 if(!isset($_SESSION["login"])){
     header("Location: pages/login.php");
     exit;
 }
+
+$result = mysqli_query($db, "SELECT image FROM tb_users WHERE id = '" . $_SESSION['id']."'");
+$row = mysqli_fetch_assoc($result);
+// die();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,8 +69,7 @@ if(!isset($_SESSION["login"])){
             <div class="list-group list-group-flush">
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="index.php"><i
                         class="fa-solid fa-house" style="margin-right: 6px;"></i>Home</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="pages/favourites.php"><i
-                        class="fa-solid fa-bookmark" style="margin-right: 6px;"></i>Favourites</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="pages/favourites.php"><i class="fa-solid fa-thumbs-up" style="margin-right: 6px;"></i>Liked Videos</a>
             </div>
         </div>
         <!-- Page content wrapper-->
@@ -81,11 +86,11 @@ if(!isset($_SESSION["login"])){
                                 <input type="text" placeholder="Search.." name="search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
-                            <li class="nav-item dropdown" style="margin-left: 320px;list-style: none;">
+                            <li class="nav-item dropdown" style="margin-left: 470px;list-style: none;">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;"><i class="fa-solid fa-plus"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="pages/login.php"><i class="fa-solid fa-video" style="margin-right: 5px;"></i>Upload Videos</a>
+                                    <a class="dropdown-item" href="pages/upload_videos.php" target="_blank"><i class="fa-solid fa-video" style="margin-right: 5px;"></i>Upload Videos</a>
                                     <a class="dropdown-item" href="pages/register.php"><i class="fa-solid fa-globe" style="margin-right: 5px;"></i>Go Live</a>
                                 </div>
                             </li>
@@ -93,13 +98,13 @@ if(!isset($_SESSION["login"])){
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                             <li class="nav-item dropdown">
-                                <img src="assets/img/profile.jpeg" alt="Profile" width="40px" height="40px" class="nav-link dropdown-toggle rounded-circle" 
+                                <img src="assets/img/profile/<?php echo $row['image'] ?>" alt="Profile" width="40px" height="40px" class="nav-link dropdown-toggle rounded-circle" 
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
                                 <!-- <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a> -->
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="pages/login.php">Login</a>
-                                    <a class="dropdown-item" href="pages/register.php">Register</a>
+                                    <a class="dropdown-item" href="pages/register.php" target="_blank">Register</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="controller/logout_controller.php">Logout</a>
                                 </div>
@@ -122,7 +127,7 @@ if(!isset($_SESSION["login"])){
                                 <source src="assets/video/linux1.mp4" type="video/mp4">
                             </video>
                             <div class="card-body">
-                                <img src="assets/img/profile.jpeg" alt="Profile" width="30px">
+                                <img src="assets/img/profile/<?php echo $row['image'] ?>" alt="Profile" width="30px">
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi DNS Server di Debian 10</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
                                 <input type="button" class="btn" id="subs1" style="background-color: red;color: white;" onclick="Subs(1)" value="Subscribe"></input>

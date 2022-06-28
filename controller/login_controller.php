@@ -18,6 +18,7 @@
 
                 // set session
                 $_SESSION["login"] = true;
+                $_SESSION["id"] = $row['id'];
                 header('Location: ../index.php');
                 exit;
             }else{
