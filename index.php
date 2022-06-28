@@ -81,6 +81,15 @@ if(!isset($_SESSION["login"])){
                                 <input type="text" placeholder="Search.." name="search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
+                            <li class="nav-item dropdown" style="margin-left: 320px;list-style: none;">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;"><i class="fa-solid fa-plus"></i></a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="pages/login.php"><i class="fa-solid fa-video" style="margin-right: 5px;"></i>Upload Videos</a>
+                                    <a class="dropdown-item" href="pages/register.php"><i class="fa-solid fa-globe" style="margin-right: 5px;"></i>Go Live</a>
+                                </div>
+                            </li>
+                            
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                             <li class="nav-item dropdown">
@@ -117,8 +126,8 @@ if(!isset($_SESSION["login"])){
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi DNS Server di Debian 10</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
                                 <input type="button" class="btn" id="subs1" style="background-color: red;color: white;" onclick="Subs(1)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(1)">
+                                    <i class="far fa-heart" style="color: white;" id="icon1"></i></button>
                             </div>
                         </div>
                     </div>
@@ -132,8 +141,8 @@ if(!isset($_SESSION["login"])){
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi Web Server di Debian 10</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
                                 <input type="button" class="btn" id="subs2" style="background-color: red;color: white;" onclick="Subs(2)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(2)">
+                                    <i class="far fa-heart" style="color: white;" id="icon2" ></i></button>
                             </div>
                         </div>
                     </div>
@@ -147,8 +156,8 @@ if(!isset($_SESSION["login"])){
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi FTP Server di Debian 10</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
                                 <input type="button" class="btn" id="subs3" style="background-color: red;color: white;" onclick="Subs(3)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(3)">
+                                    <i class="far fa-heart" style="color: white;" id="icon3"></i></button>
                             </div>
                         </div>
                     </div>
@@ -162,8 +171,8 @@ if(!isset($_SESSION["login"])){
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi DNS Server di Cisco </h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
                                 <input type="button" class="btn" id="subs4" style="background-color: red;color: white;" onclick="Subs(4)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(4)">
+                                    <i class="far fa-heart" style="color: white;" id="icon4"></i></button>
                             </div>
                         </div>
                     </div>
@@ -177,8 +186,8 @@ if(!isset($_SESSION["login"])){
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi Web Server di Cisco</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
                                 <input type="button" class="btn" id="subs5" style="background-color: red;color: white;" onclick="Subs(5)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(5)">
+                                    <i class="far fa-heart" style="color: white;" id="icon5"></i></button>
                             </div>
                         </div>
                     </div>
@@ -192,8 +201,8 @@ if(!isset($_SESSION["login"])){
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Konfigurasi FTP Server di Cisco</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
                                 <input type="button" class="btn" id="subs6" style="background-color: red;color: white;" onclick="Subs(6)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(6)">
+                                    <i class="far fa-heart" style="color: white;" id="icon6"></i></button>
                             </div>
                         </div>
                     </div>
@@ -207,8 +216,8 @@ if(!isset($_SESSION["login"])){
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Membuat Tag HTML</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
                                 <input type="button" class="btn" id="subs7" style="background-color: red;color: white;" onclick="Subs(7)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(7)">
+                                    <i class="far fa-heart" style="color: white;" id="icon7"></i></button>
                             </div>
                         </div>
                     </div>
@@ -222,8 +231,8 @@ if(!isset($_SESSION["login"])){
                                 <h5 class="card-title mb-2" style="display: inline;margin-top: 1px;">Membuat Flex</h5>
                                 <h6 class="card-user mb-2 mt-2 text-muted">Kusuma</h6>
                                 <input type="button" class="btn" id="subs8" style="background-color: red;color: white;" onclick="Subs(8)" value="Subscribe"></input>
-                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;">
-                                    <i class="far fa-heart" style="color: white;"></i></button>
+                                <button href="#" class="btn btn-outline-secondary btn-sm" style="margin-left: 2px;background-color: #2196F3;" onclick="Favourites(8)">
+                                    <i class="far fa-heart" style="color: white;" id="icon8"></i></button>
                             </div>
                         </div>
                     </div>

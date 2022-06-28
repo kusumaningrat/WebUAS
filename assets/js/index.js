@@ -58,6 +58,20 @@ function Subs(index){
     }
 }
 
+function Favourites(index){
+	for (var i = 1; i < 10; i++) {
+		var icon = document.getElementById('icon' + i)
+		if(i == index){
+			icon.className = icon.className === "fa fa-heart" ? "far fa-heart" : "fa fa-heart";
+			// btn.value = btn.value == "Subscribe" ? "Unsubscribe" : "Subscribe";
+			// subs.style.color = subs.style.color === 'white' ? 'black' : 'white';
+		}
+	}
+}
+
+
+
+
 // let subs = document.querySelector('#subs')
 // subs.addEventListener('click', () => {
 //     subs.style.backgroundColor = '#B0B0B0'
